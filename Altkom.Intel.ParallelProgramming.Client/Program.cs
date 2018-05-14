@@ -11,6 +11,10 @@ namespace Altkom.Intel.ParallelProgramming.Client
         static void Main(string[] args)
         {
             HelloWorldTest.Hello("Test");
+            HelloWorldTest.Hello("Test");
+            HelloWorldTest.Hello("Test");
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
         }
     }
 }
