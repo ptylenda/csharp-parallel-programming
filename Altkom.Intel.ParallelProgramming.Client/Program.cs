@@ -22,7 +22,9 @@ namespace Altkom.Intel.ParallelProgramming.Client
             ThreadsTest.CreateThread();
             ThreadsTest.CreateThread();*/
 
-            ThreadsTest.CreateDowloadThread();
+            //ThreadsTest.CreateDowloadThread();
+
+            ThreadPoolTest.CreateThreadPoolTest();
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();

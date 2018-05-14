@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ThreadPoolTest.cs" />
     <Compile Include="ThreadsTest.cs" />
     <Compile Include="HelloWorldTest.cs" />
     <Compile Include="Program.cs" />

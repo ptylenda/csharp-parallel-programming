@@ -40,11 +40,17 @@ namespace Altkom.Intel.ParallelProgramming.Client
             var thread2 = new Thread(Download);
             thread2.Start("http://www.intel.pl/");*/
 
-            var thread = new Thread(() => Download("http://www.wp.pl/"));
+            /*var thread = new Thread(() => Download("http://www.wp.pl/"));
             thread.Start();
 
             var thread2 = new Thread(() => Download("http://www.intel.pl/"));
-            thread2.Start();
+            thread2.Start();*/
+
+            for (int i = 0; i < 20; i++)
+            {
+                var thread = new Thread(() => Download("http://www.wp.pl/"));
+                thread.Start();
+            }
         }
 
 
@@ -59,7 +65,7 @@ namespace Altkom.Intel.ParallelProgramming.Client
             using (var client = new WebClient())
             {
                 var data = client.DownloadString(uri);
-                Console.WriteLine(data.Trim().Substring(0, 256));
+                Console.WriteLine($"#{Thread.CurrentThread.ManagedThreadId} {data.Trim().Substring(0, 50)}");
             }
         }
     }
