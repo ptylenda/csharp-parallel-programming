@@ -11,6 +11,7 @@ namespace Altkom.Intel.ParallelProgramming.Client
     {
         public static void Hello(string message)
         {
+            Console.WriteLine($"Hello: #{Thread.CurrentThread.ManagedThreadId}");
             Console.WriteLine("Sending...");
             Thread.Sleep(TimeSpan.FromSeconds(3));
             Console.WriteLine($"Sent: {message}");
