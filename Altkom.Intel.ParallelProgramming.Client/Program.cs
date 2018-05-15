@@ -38,11 +38,16 @@ namespace Altkom.Intel.ParallelProgramming.Client
 
             //TaskTests.TaskRunTest();
 
-            ParallelTests.ForSequentialTest().GetAwaiter().GetResult();
+            /*ParallelTests.ForSequentialTest().GetAwaiter().GetResult();
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
-            ParallelTests.ForParallelTest();
-                
+            ParallelTests.ForParallelTest();*/
+
+            //ParallelLinqTests.SequentialTest();
+            //ParallelLinqTests.ParallelTest();
+            ParallelLinqTests.ParallelTestWithThreadNumbers();
+            ParallelLinqTests.ParallelTestWithThreadNumbersAsOrdered();
+
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }

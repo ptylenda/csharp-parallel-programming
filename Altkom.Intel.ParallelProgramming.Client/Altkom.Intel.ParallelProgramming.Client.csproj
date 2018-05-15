@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers.cs" />
+    <Compile Include="ParallelLinqTests.cs" />
     <Compile Include="TaskTests.cs" />
     <Compile Include="ThreadPoolTest.cs" />
     <Compile Include="ThreadsTest.cs" />
