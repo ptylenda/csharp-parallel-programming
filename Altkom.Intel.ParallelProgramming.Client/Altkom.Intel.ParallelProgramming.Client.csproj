@@ -77,12 +77,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers.cs" />
     <Compile Include="TaskTests.cs" />
     <Compile Include="ThreadPoolTest.cs" />
     <Compile Include="ThreadsTest.cs" />
     <Compile Include="HelloWorldTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ParallelTests.cs" />
     <Compile Include="WebApiTests.cs" />
   </ItemGroup>
   <ItemGroup>

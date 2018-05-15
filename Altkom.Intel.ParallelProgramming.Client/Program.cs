@@ -32,8 +32,17 @@ namespace Altkom.Intel.ParallelProgramming.Client
             //TaskTests.ExecuteSyncTasks();
             //TaskTests.ExecuteAsyncTasks();
 
-            WebApiTests.ExecuteAsyncRobotsCall();
+            //WebApiTests.ExecuteAsyncRobotsCall();
 
+            //TaskTests.AsyncTestWithCancel().GetAwaiter().GetResult();
+
+            //TaskTests.TaskRunTest();
+
+            ParallelTests.ForSequentialTest().GetAwaiter().GetResult();
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            ParallelTests.ForParallelTest();
+                
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }

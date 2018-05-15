@@ -11,6 +11,31 @@ namespace Altkom.Intel.ParallelProgramming.Client
 {
     class TaskTests
     {
+        public static void TaskRunTest()
+        {
+            Console.WriteLine($"DoWork: #{Thread.CurrentThread.ManagedThreadId} UI");
+            DoWorkAsync();
+            DoWorkAsync2();
+        }
+
+        public static Task<decimal> DoWorkAsync()
+        {
+            return Task.Run(() => DoWork());
+        }
+
+        public static Task<decimal> DoWorkAsync2()
+        {
+            return Task.FromResult(DoWork());
+        }
+
+        public static decimal DoWork()
+        {
+            Console.WriteLine($"DoWork: #{Thread.CurrentThread.ManagedThreadId} working...");
+            Thread.Sleep(TimeSpan.FromSeconds(3));
+            Console.WriteLine($"DoWork: #{Thread.CurrentThread.ManagedThreadId} finished");
+            return 10;
+        }
+
         public static void CreateTask()
         {
             for (int i = 0; i < 50; i++)
@@ -68,6 +93,23 @@ namespace Altkom.Intel.ParallelProgramming.Client
             Console.WriteLine("After wp");
         }
 
+        public static async Task AsyncTestWithCancel()
+        {
+            var r = new Random();
+            var source = new CancellationTokenSource(TimeSpan.FromMilliseconds(200));
+            var token = source.Token;
+
+            try
+            {
+                await DownloadAsync("http://wp.pl", token);
+                Console.WriteLine("After wp");
+            }
+            catch (WebException e) when (e.Status == WebExceptionStatus.RequestCanceled)
+            {
+                Console.WriteLine("Request cancelled!");
+            }            
+        }
+
         public static int Download(string uri)
         {
             Console.WriteLine($"Download: #{Thread.CurrentThread.ManagedThreadId}");
@@ -91,6 +133,26 @@ namespace Altkom.Intel.ParallelProgramming.Client
                 Console.WriteLine($"#{Thread.CurrentThread.ManagedThreadId} {data.Trim().Substring(0, 50)}");
 
                 return data.Length;
+            }
+        }
+
+        public static async Task<int> DownloadAsync(string uri, CancellationToken token)
+        {
+            Console.WriteLine($"Download: #{Thread.CurrentThread.ManagedThreadId}");
+            using (var client = new WebClient())
+            using (token.Register(() => client.CancelAsync()))
+            {
+                if (token.IsCancellationRequested)
+                {
+                    Console.WriteLine("Cancelled before");
+                    return 0;
+                }
+                else
+                {
+                    var data = await client.DownloadStringTaskAsync(uri);
+                    Console.WriteLine($"#{Thread.CurrentThread.ManagedThreadId} {data.Trim().Substring(0, 50)}");
+                    return data.Length;
+                }
             }
         }
     }
