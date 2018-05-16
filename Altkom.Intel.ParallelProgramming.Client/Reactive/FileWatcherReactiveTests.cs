@@ -31,8 +31,15 @@ namespace Altkom.Intel.ParallelProgramming.Client.Reactive
                     h => watcher.Deleted -= h)
                 .Select(x => x.EventArgs);
 
-            using (createdObservable.Subscribe(x => Console.WriteLine($"Created {x.FullPath}")))
-            using (deletedObservable.Subscribe(x => Console.WriteLine($"Deleted {x.FullPath}")))
+            var createdRateObservable = createdObservable
+                .Window(TimeSpan.FromSeconds(3))
+                .Select(x => x.Count());
+
+            using (createdObservable.Subscribe(new ConsoleWritingObserver<FileSystemEventArgs>("Created", x => x.FullPath)))
+            using (deletedObservable.Subscribe(new ConsoleWritingObserver<FileSystemEventArgs>("Deleted", x => x.FullPath)))
+            using (createdObservable.Where(x => Path.GetExtension(x.FullPath) == ".txt").Subscribe(new ConsoleWritingObserver<FileSystemEventArgs>("Created txt", x => x.FullPath)))
+            using (deletedObservable.Where(x => Path.GetExtension(x.FullPath) == ".txt").Subscribe(new ConsoleWritingObserver<FileSystemEventArgs>("Deleted txt", x => x.FullPath)))
+            using (createdRateObservable.Subscribe(x => x.Subscribe(y => Console.WriteLine($"[Created rate/s]: {(y / 3.0)}"))))
             {
                 Console.WriteLine("Press any key to stop watching file system...");
                 Console.ReadKey();

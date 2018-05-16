@@ -97,6 +97,8 @@
     <Compile Include="Helpers.cs" />
     <Compile Include="ParallelAggregationTests.cs" />
     <Compile Include="ParallelLinqTests.cs" />
+    <Compile Include="Reactive\ConsoleWritingObserver.cs" />
+    <Compile Include="Reactive\WindowReactiveTests.cs" />
     <Compile Include="Reactive\FileWatcherReactiveTests.cs" />
     <Compile Include="Reactive\MergeSourceReactiveTests.cs" />
     <Compile Include="Reactive\TimeObservableReactiveTests.cs" />

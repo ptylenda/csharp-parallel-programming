@@ -55,7 +55,8 @@ namespace Altkom.Intel.ParallelProgramming.Client
             //HotSourceReactiveTests.SubjectTest();
             //TimeObservableReactiveTests.TimerTest();
             //MergeSourceReactiveTests.ConcatTests();
-            FileWatcherReactiveTests.Execute();
+            //FileWatcherReactiveTests.Execute();
+            WindowReactiveTests.Execute();
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
