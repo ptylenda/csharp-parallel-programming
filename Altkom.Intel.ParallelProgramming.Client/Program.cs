@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Altkom.Intel.ParallelProgramming.Client.Reactive;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -45,8 +46,16 @@ namespace Altkom.Intel.ParallelProgramming.Client
 
             //ParallelLinqTests.SequentialTest();
             //ParallelLinqTests.ParallelTest();
-            ParallelLinqTests.ParallelTestWithThreadNumbers();
-            ParallelLinqTests.ParallelTestWithThreadNumbersAsOrdered();
+            //ParallelLinqTests.ParallelTestWithThreadNumbers();
+            //ParallelLinqTests.ParallelTestWithThreadNumbersAsOrdered();
+
+            //ParallelAggregationTests.CalcuateTest();
+
+            //ColdSourceReactiveTests.Execute();
+            //HotSourceReactiveTests.SubjectTest();
+            //TimeObservableReactiveTests.TimerTest();
+            //MergeSourceReactiveTests.ConcatTests();
+            FileWatcherReactiveTests.Execute();
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
